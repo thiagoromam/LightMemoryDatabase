@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B72C3850-85EE-41BE-B773-7B75C2B41803}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LightMemoryDatabase</RootNamespace>
+    <AssemblyName>LightMemoryDatabase</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Profile136</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <FodyPath>..\packages\Fody.1.20.0.0</FodyPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Api\IContextService.cs" />
+    <Compile Include="Api\IPlainObject.cs" />
+    <Compile Include="Api\IPlainObjectCollection.cs" />
+    <Compile Include="Api\IReference.cs" />
+    <Compile Include="Database\References\LazyObject.cs" />
+    <Compile Include="Api\IPlainObjectReference.cs" />
+    <Compile Include="Api\PlainObjectExtensions.cs" />
+    <Compile Include="Api\IPlainObjectsReference.cs" />
+    <Compile Include="Database\References\PlainObjectsReferenceList.cs" />
+    <Compile Include="Database\Sources\CollectionSource.cs" />
+    <Compile Include="Database\Sources\ISimpleCollectionSource.cs" />
+    <Compile Include="Database\Sources\MemorySourceContext.cs" />
+    <Compile Include="Database\IO\DatabaseConstants.cs" />
+    <Compile Include="Database\DatabaseInfo.cs" />
+    <Compile Include="Database\IO\DatabaseReader.cs" />
+    <Compile Include="Database\References\ReferenceManager.cs" />
+    <Compile Include="Database\IO\DatabaseWriter.cs" />
+    <Compile Include="Database\PlainObjectCollection.cs" />
+    <Compile Include="Database\ContextService.cs" />
+    <Compile Include="Database\References\PlainObjectReference.cs" />
+    <Compile Include="Database\References\PlainObjectsReference.cs" />
+    <Compile Include="Api\DependencyRegistry.cs" />
+    <Compile Include="Helpers\ExpressionHelper.cs" />
+    <Compile Include="Helpers\MemberHelper.cs" />
+    <Compile Include="Helpers\ObjectHelper.cs" />
+    <Compile Include="Api\CascadeDeleteAttribute.cs" />
+    <Compile Include="Api\InitalizeAttribute.cs" />
+    <Compile Include="Api\IgnoreAttribute.cs" />
+    <Compile Include="Serialization\JsonClassInfo.cs" />
+    <Compile Include="Serialization\JsonDeserializer.cs" />
+    <Compile Include="Serialization\JsonFieldInfo.cs" />
+    <Compile Include="Serialization\JsonSerializer.cs" />
+    <Compile Include="Serialization\JsonSerialization.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Api\IStorageService.cs" />
+    <Compile Include="Api\IWriter.cs" />
+    <Compile Include="Api\IReader.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ComputerBeacon.Json">
+      <HintPath>..\packages\ComputerBeacon.Json.4.2.804\lib\portable-net4+sl4+wp7+win8\ComputerBeacon.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\portable-net40+sl4+win8+wp71\Microsoft.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Threading.Tasks.Extensions">
+      <HintPath>..\packages\Microsoft.Bcl.Async.1.0.165\lib\portable-net40+sl4+win8+wp71\Microsoft.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <HintPath>..\packages\Microsoft.Bcl.1.0.19\lib\portable-net40+sl5+win8+wp8\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <HintPath>..\packages\Microsoft.Bcl.1.0.19\lib\portable-net40+sl5+win8+wp8\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,274 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ComputerBeacon.Json</name>
+    </assembly>
+    <members>
+        <member name="T:ComputerBeacon.Json.Parser">
+            <summary>
+            A class for parsing JSON syntax strings
+            </summary>
+        </member>
+        <member name="M:ComputerBeacon.Json.Parser.Parse(System.String)">
+            <summary>
+            Parse a JSON string into a JsonObject or JsonArray instance
+            </summary>
+            <param name="s">JSON string</param>
+            <returns>a JsonObject or JsonArray instance, depending on the input string</returns>
+            <exception cref="T:System.FormatException">The string contains invalid JSON syntax.</exception>
+        </member>
+        <member name="T:ComputerBeacon.Json.JsonArray">
+            <summary>
+            JsonArray class
+            </summary>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.#ctor">
+            <summary>
+            Creates an empty JsonArray
+            </summary>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.#ctor(System.String)">
+            <summary>
+            Create a new JsonArray
+            </summary>
+            <param name="jsonString">JSON string that represents an array</param>
+            <exception cref="T:System.FormatException">JsonString represents JsonObject instead of JsonArray</exception>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.#ctor(System.Object[])">
+            <summary>
+            Creates a JsonArray with initial values
+            </summary>
+            <param name="values">Array of initial values</param>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.Add(System.Object)">
+            <summary>
+            Adds an item to the JsonArray
+            </summary>
+            <param name="item">Item to be added</param>
+            <returns>Index of the added item</returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.Clear">
+            <summary>
+            Removes all items in the JsonArray
+            </summary>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.Contains(System.Object)">
+            <summary>
+            Determines whether the JsonArray contains a specific value
+            </summary>
+            <param name="item">Value to be checked</param>
+            <returns>True if the specified value is found in the JsonArray, otherwise False</returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.IndexOf(System.Object)">
+            <summary>
+            Determines the index of the first occurrence of a specific value
+            </summary>
+            <param name="item">Value to be checked</param>
+            <returns>Index of the first occurrence of the specified value, -1 if the value is not found</returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.Insert(System.Int32,System.Object)">
+            <summary>
+            Inserts an item to the JsonArray at the specified index
+            </summary>
+            <param name="index">Index of item to be inserted</param>
+            <param name="item">Value of item to be inserted</param>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.Remove(System.Object)">
+            <summary>
+            Removes the first occurrence of a specified value from the JsonArray
+            </summary>
+            <param name="item">Value to be removed</param>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.RemoveAt(System.Int32)">
+            <summary>
+            Removes the item at the specified index
+            </summary>
+            <param name="index">Index of item to be removed</param>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.ToString">
+            <summary>
+            Returns the shortest string representation of the current JsonArray
+            </summary>
+            <returns>A string representation of the current JsonArray</returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonArray.ToString(System.Boolean)">
+            <summary>
+            Returns the string representation of the current JsonArray
+            </summary>
+            <param name="niceFormat">Whether the string is formatted for easy reading</param>
+            <returns>A string representation of the current JsonArray</returns>
+        </member>
+        <member name="P:ComputerBeacon.Json.JsonArray.Item(System.Int32)">
+            <summary>
+            Gets the object located at the specified index in the JsonArray
+            </summary>
+            <param name="index">Index of object</param>
+            <returns></returns>
+        </member>
+        <member name="P:ComputerBeacon.Json.JsonArray.Count">
+            <summary>
+            The number of objects contained in this JsonArray
+            </summary>
+        </member>
+        <member name="T:ComputerBeacon.Json.JsonObject">
+            <summary>
+            JsonObject class
+            </summary>
+        </member>
+        <member name="F:ComputerBeacon.Json.JsonObject.entries">
+            <summary>
+            The properties of this JSON Object
+            </summary>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.#ctor">
+            <summary>
+            Creates an empty JsonObject
+            </summary>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.#ctor(System.String)">
+            <summary>
+            Create a new JsonObject from a string
+            </summary>
+            <param name="jsonString">JSON string that represents an object</param>
+            <exception cref="T:System.FormatException">JsonString represents JsonArray instead of JsonObject</exception>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.#ctor(System.Object)">
+            <summary>
+            Creates a JsonObject with initial string
+            </summary>
+            <param name="values">Annoymous type containing initial values</param>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{System#String@System#Object}}#Add(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            Adds the specified key and value to the JsonObject.
+            </summary>
+            <param name="item"></param>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.Add(System.String,System.Object)">
+            <summary>
+            Adds the specified key and value to the JsonObject.
+            </summary>
+            <param name="key">Key of entry</param>
+            <param name="value">Value of entry</param>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.Clear">
+            <summary>
+            Removes all keys and values from the JsonObject.
+            </summary>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.Remove(System.String)">
+            <summary>
+            Removes the item with the specified key from the JsonObject.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{System#String@System#Object}}#CopyTo(System.Collections.Generic.KeyValuePair{System.String,System.Object}[],System.Int32)">
+            <summary>
+            Copy all the entries to an array, starting at a particular array index.
+            </summary>
+            <param name="array"></param>
+            <param name="arrayIndex"></param>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.Contains(System.Collections.Generic.KeyValuePair{System.String,System.Object})">
+            <summary>
+            Determines whether the JsonObject contains the specified key/value pair.
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.ContainsKey(System.String)">
+            <summary>
+            Determines whether the JsonObject contains the specified key.
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.TryGetValue(System.String,System.Object@)">
+            <summary>
+            Gets the value associated with the specified key.
+            </summary>
+            <param name="key"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.ToString">
+            <summary>
+            Returns the shortest string representation of the current JsonObject
+            </summary>
+            <returns>A string</returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.JsonObject.ToString(System.Boolean)">
+            <summary>
+            Returns the string representation of the current JsonObject
+            </summary>
+            <param name="niceFormat">Whether the string is formatted for easy reading</param>
+            <returns>A string representation of the current JsonObject</returns>
+        </member>
+        <member name="P:ComputerBeacon.Json.JsonObject.Item(System.String)">
+            <summary>
+            Gets a property of the current JSON Object by key
+            </summary>
+            <param name="key">Key of property</param>
+            <returns>Value of property. Returns null if property is not found.</returns>
+        </member>
+        <member name="P:ComputerBeacon.Json.JsonObject.Count">
+            <summary>
+            The number of key/value pairs contained in the JsonObject
+            </summary>
+        </member>
+        <member name="P:ComputerBeacon.Json.JsonObject.IsReadOnly">
+            <summary>
+            Whether the JsonObject is read-only. This value is always true.
+            </summary>
+        </member>
+        <member name="P:ComputerBeacon.Json.JsonObject.Keys">
+            <summary>
+            All the keys in the JsonObject
+            </summary>
+        </member>
+        <member name="P:ComputerBeacon.Json.JsonObject.Values">
+            <summary>
+            All the values in the JsonObject
+            </summary>
+        </member>
+        <member name="T:ComputerBeacon.Json.Serializer">
+            <summary>
+            A class for serializing and deserializing JSON objects
+            </summary>
+        </member>
+        <member name="F:ComputerBeacon.Json.Serializer.TypeDeserializers">
+            <summary>
+            Custom functions used to deserialize an object to the specified type
+            </summary>
+        </member>
+        <member name="F:ComputerBeacon.Json.Serializer.TypeSerializers">
+            <summary>
+            Custom functions used to serialize an object of the specified type
+            </summary>
+        </member>
+        <member name="M:ComputerBeacon.Json.Serializer.Serialize(System.Object)">
+            <summary>
+            Serializes an object to its JSON representation
+            </summary>
+            <param name="o">object to be serialized</param>
+            <returns>JSON string that represents the object</returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.Serializer.Deserialize``1(System.Object)">
+            <summary>
+            Deserializes a JsonObject or JsonArray instance to the specified type
+            </summary>
+            <typeparam name="T">Type to deserialize to</typeparam>
+            <param name="o">JsonObject or JsonArray instance</param>
+            <returns>An instance of the specified type</returns>
+        </member>
+        <member name="M:ComputerBeacon.Json.Serializer.Deserialize(System.Type,System.Object)">
+            <summary>
+            Deserializes a JsonObject or JsonArray instance to the specified type
+            </summary>
+            <param name="toType">Type to be serialized to</param>
+            <param name="o">JsonObject or JsonArray instance</param>
+            <returns>An instance of the specified type</returns>
+        </member>
+    </members>
+</doc>
