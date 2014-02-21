@@ -1,3 +1,4 @@
+![Icon](https://cdn1.iconfinder.com/data/icons/windows-8-metro-style/128/mind_map.png)
 Light Memory Database
 ===================
 
