@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using LightMemoryDatabase.Api;
+using LightMemoryDatabase.Helpers;
 
 namespace LightMemoryDatabase.Serialization
 {
@@ -33,7 +34,7 @@ namespace LightMemoryDatabase.Serialization
                 if (!_fieldInitializeMethodLoaded)
                 {
                     var methods = ClassType.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                    _initializeMethod = methods.SingleOrDefault(m => m.GetCustomAttributes(typeof(InitalizeAttribute), true).Any());
+                    _initializeMethod = methods.SingleOrDefault(m => m.HasAttribute<InitalizeAttribute>());
                     _fieldInitializeMethodLoaded = true;
                 }
 

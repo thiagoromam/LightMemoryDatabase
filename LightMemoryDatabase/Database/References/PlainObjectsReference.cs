@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using LightMemoryDatabase.Api;
 using LightMemoryDatabase.Database.Sources;
@@ -23,6 +25,16 @@ namespace LightMemoryDatabase.Database.References
         object IReference.Value
         {
             get { return Value; }
+            set
+            {
+                if (!(value is IList))
+                    throw new ArgumentException("value must be an IList");
+
+                if (!(value is IList<T>))
+                    value = ((IList)value).Cast<T>().ToList();
+
+                Value = (IList<T>)value;
+            }
         }
 
         public override IList<T> Value

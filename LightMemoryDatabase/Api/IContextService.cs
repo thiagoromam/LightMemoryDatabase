@@ -6,5 +6,6 @@ namespace LightMemoryDatabase.Api
     {
         Task<IPlainObjectCollection<T>> GetCollection<T>() where T : class, IPlainObject;
         Task SaveDatabase();
+        Task<IContextTransaction> OpenTransaction();
     }
 }

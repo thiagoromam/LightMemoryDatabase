@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using LightMemoryDatabase;
 using LightMemoryDatabase.Api;
 using Test.Database;
 using Test.Stream;
-using System.Dynamic;
 
 namespace Test
 {
@@ -26,8 +21,9 @@ namespace Test
             DependencyRegistry.Register<IStorageService, StorageService>();
 
             //InsertBooks();
-            ReadBooks();
+            //ReadBooks();
             //AlterBook();
+            TransactionTest();
 
             Console.ReadLine();
         }
@@ -120,6 +116,35 @@ namespace Test
             stopwatch.Stop();
 
             Console.WriteLine("books altered");
+            Console.WriteLine("stopwatch: {0}", stopwatch.ElapsedMilliseconds);
+        }
+
+        private async static void TransactionTest()
+        {
+            var context = DependencyRegistry.Resolve<DataContext>();
+            var books = await context.Books;
+            var book1 = books.First();
+            var book2 = books.Skip(1).First();
+
+            var stopwatch = Stopwatch.StartNew();
+            try
+            {
+                await TransactionExtensions.ExecuteInTransaction(() =>
+                {
+                    book1.Authors.Clear();
+                    //book1.Title = "test 1";
+                    //book2.Title = "test 2";
+
+                    // TODO validate when add an new author, and remove it if added to the main context
+
+                    throw new Exception();
+                });
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("erro: {0}", e.Message);
+            }
+            stopwatch.Stop();
             Console.WriteLine("stopwatch: {0}", stopwatch.ElapsedMilliseconds);
         }
     }

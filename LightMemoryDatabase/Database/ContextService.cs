@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using LightMemoryDatabase.Api;
 using LightMemoryDatabase.Database.IO;
 using LightMemoryDatabase.Database.Sources;
+using LightMemoryDatabase.Database.Transactions;
 
 namespace LightMemoryDatabase.Database
 {
-    internal sealed class ContextService : IContextService
+    internal sealed class ContextService : IContextService, ICollectionManager
     {
         private readonly MemorySourceContext _context;
         private readonly DatabaseReader _databaseReader;
@@ -15,6 +16,11 @@ namespace LightMemoryDatabase.Database
         private readonly Dictionary<Type, IPlainObjectCollection> _collections;
         private bool _databaseLoaded;
         private bool _loadingDatabase;
+
+        public IEnumerable<IPlainObjectCollection> Collections
+        {
+            get { return _collections.Values; }
+        }
 
         public ContextService(MemorySourceContext context, DatabaseReader databaseReader, DatabaseWriter databaseWriter)
         {
@@ -56,6 +62,14 @@ namespace LightMemoryDatabase.Database
         {
             if (_databaseReader.LoadedCorrectly)
                 await _databaseWriter.Write();
+        }
+
+        public async Task<IContextTransaction> OpenTransaction()
+        {
+            var transaction = new ContextTransaction(this);
+            await transaction.Open();
+
+            return transaction;
         }
     }
 }

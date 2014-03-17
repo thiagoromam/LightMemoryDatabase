@@ -23,7 +23,10 @@ namespace LightMemoryDatabase.Database.References
             get
             {
                 if (_callFactoryInNextCall)
+                {
                     _value = _valueFactory();
+                    _callFactoryInNextCall = false;
+                }
 
                 return _value;
             }

@@ -2,6 +2,6 @@
 {
     public interface IReference
     {
-        object Value { get; }
+        object Value { get; set; }
     }
 }

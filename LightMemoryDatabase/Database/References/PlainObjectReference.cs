@@ -20,6 +20,7 @@ namespace LightMemoryDatabase.Database.References
         object IReference.Value
         {
             get { return Value; }
+            set { Value = (T)value; }
         }
 
         public override T Value
